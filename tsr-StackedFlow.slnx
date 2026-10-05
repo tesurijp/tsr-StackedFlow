@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Common/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE.txt" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="src/Runner.StackedFlow/Runner.StackedFlow.fsproj" />
+  <Project Path="src/StackedFlow/StackedFlow.fsproj" />
+  <Project Path="test/Test.StackedFlow/Test.StackedFlow.fsproj" />
+</Solution>
