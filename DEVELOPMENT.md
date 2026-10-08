@@ -8,7 +8,7 @@
 | --- | --- |
 | `src/StackedFlow` | `tsr.StackedFlow` ライブラリ本体です。 |
 | `src/Runner.StackedFlow` | ライブラリ実装時に動作を確認するコンソール アプリケーションです。公開 API の一部ではありません。 |
-| `test/Test.StakedFlow` | ライブラリ本体の自動テストです。|
+| `test/Test.StackedFlow` | ライブラリ本体の自動テストです。 |
 
 ## 実行とテスト
 
@@ -17,8 +17,9 @@
 dotnet run --project src/Runner.StackedFlow/Runner.StackedFlow.fsproj
 
 # ライブラリのテストを実行
-dotnet test test/Test.StakedFlow/Test.StakedFlow.fsproj
+dotnet run --project test/Test.StackedFlow/Test.StackedFlow.fsproj
 
-# ソリューション全体をテスト
-dotnet test tsr-StackedFlow.slnx
+# ソリューション全体をビルドしてからライブラリのテストを実行
+dotnet build tsr-StackedFlow.slnx
+dotnet run --project test/Test.StackedFlow/Test.StackedFlow.fsproj --no-build
 ```
