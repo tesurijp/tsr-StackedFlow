@@ -4,29 +4,33 @@ let add x y z = x + y + z
 
 let x = 
     EmptyStack
-    |+ 11
-    |> dup
-    |+ 10
-    |> printStack  // 
-    |> dup
-    |> printStack  // 
-    |> apply3 add
-    |> printStack  // 
-    |> apply2 (*)
-    |> printStack //
+    |> Stack.push 11
+    |> Stack.dup
+    |> Stack.push 10
+    |> Stack.printStack
+    |> Stack.dup
+    |> Stack.printStack
+    |> Stack.apply3 add
+    |> Stack.printStack
+    |> Stack.apply2 (*)
+    |> Stack.printStack
+
+open tsr.StackedFlow.Stack
 
 EmptyStack
-|+ 10
-|+ 10
-|+ "string"
+|> push 10
+|> push 10
+|> push "string"
 |> printStack
 |> swap
 |> printStack
-|+ "11"
+|> push "11"
 |> dup
-|+ "string"
+|> push "string"
 |> printStack
 |> ignore
+
+open tsr.StackedFlow.StackOperator
 
 EmptyStack
 |+ 10
@@ -53,9 +57,70 @@ EmptyStack
 |+ 10
 |+ 10
 |+ 10
-|!! (+)
+|> printStack
+|> apply2 (+)
 |> printStack
 |!! (+)
 |> printStack
 |> ignore
+
+EmptyStack
+|+ 1
+|+ 2
+|+ 3
+|> printStack
+|> rot
+|> printStack
+|> ignore
+
+
+EmptyStack
+|+ 1
+|+ 2
+|> printStack
+|> over
+|> printStack
+|> ignore
+
+EmptyStack
+    |+ 1
+    |+ 2
+    |+ 3
+    |+ 4
+    |+ 5
+    |+ 6
+    |+ 7
+    |+ "abc"
+    |+ "xyz"
+    |> printStack
+    |> Caller.prepareArgs5
+    |> Caller.moreArgs2
+    |> Caller.moreArgs2
+    |> Caller.setFunc (fun a b c d e f g h i -> $"{a - b} + {c} + {d} + {e} + {f} {g} {h} {i}")
+    |> Caller.callArgs5
+    |> Caller.callArgs2
+    |> Caller.callArgs2
+    |> Caller.finalize
+    |> printStack
+    |> ignore
+
+EmptyStack
+    |+ "B+C "
+    |+ 2
+    |+ 3
+    |+ "E + F - G "
+    |+ 5
+    |+ 6
+    |+ 7
+    |> printStack
+    |> Caller.prepareArgs5
+    |> Caller.moreArgs2
+    |> Caller.setFunc (fun a b c d e f g -> $"{a} = {b + c}  {d} = {e + f - g}" )
+    |> Caller.callArgs5
+    |> Caller.callArgs2
+    |> Caller.finalize
+    |> head
+    |> printf "%s"
+    |> ignore
+
 
