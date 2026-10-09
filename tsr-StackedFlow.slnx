@@ -1,4 +1,9 @@
 <Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="NugetTest" />
+    <BuildType Name="Release" />
+  </Configurations>
   <Folder Name="/Common/">
     <File Path=".editorconfig" />
     <File Path=".gitattributes" />
@@ -6,7 +11,11 @@
     <File Path="LICENSE.txt" />
     <File Path="README.md" />
   </Folder>
-  <Project Path="src/Runner.StackedFlow/Runner.StackedFlow.fsproj" />
-  <Project Path="src/StackedFlow/StackedFlow.fsproj" />
-  <Project Path="test/Test.StackedFlow/Test.StackedFlow.fsproj" />
+  <Project Path="src/Runner.StackedFlow/Runner.StackedFlow.fsproj">
+    <BuildType Solution="NugetTest|*" Project="Release" />
+  </Project>
+  <Project Path="src/StackedFlow/StackedFlow.fsproj" >
+    <BuildType Solution="NugetTest|*" Project="Release" />
+  </Project>
+  <Project Path="test/Test.StackedFlow/Test.StackedFlow.fsproj"/>
 </Solution>

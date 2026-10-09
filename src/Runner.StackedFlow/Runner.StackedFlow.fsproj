@@ -3,14 +3,16 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
+    <Configurations>Debug;Release;NugetTest</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Program.fs" />
+    <PackageReference Include="tsr-StackedFlow"  Version="0.5"  Condition="'$(Configuration)' == 'NugetTest'" />
+    <ProjectReference Include="..\StackedFlow\StackedFlow.fsproj"  Condition="'$(Configuration)' != 'NugetTest'" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StackedFlow\StackedFlow.fsproj" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
 </Project>

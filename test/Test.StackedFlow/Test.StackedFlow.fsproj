@@ -5,15 +5,17 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Configurations>Debug;Release;NugetTest</Configurations>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="tsr-StackedFlow"  Version="0.5"  Condition="'$(Configuration)' == 'NugetTest'" />
+    <ProjectReference Include="..\..\src\StackedFlow\StackedFlow.fsproj"  Condition="'$(Configuration)' != 'NugetTest'" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Include="MSTestSettings.fs" />
     <Compile Include="Test.fs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\StackedFlow\StackedFlow.fsproj" />
   </ItemGroup>
 
 </Project>
