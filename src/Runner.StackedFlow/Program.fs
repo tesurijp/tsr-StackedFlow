@@ -10,9 +10,9 @@ let x =
     |> Stack.printStack
     |> Stack.dup
     |> Stack.printStack
-    |> Stack.apply3 add
+    |> FuncApplyer.apply3 add
     |> Stack.printStack
-    |> Stack.apply2 (*)
+    |> FuncApplyer.apply2 (*)
     |> Stack.printStack
 
 open tsr.StackedFlow.Stack
@@ -30,6 +30,7 @@ EmptyStack
 |> printStack
 |> ignore
 
+open tsr.StackedFlow.FuncApplyer
 open tsr.StackedFlow.StackOperator
 
 EmptyStack

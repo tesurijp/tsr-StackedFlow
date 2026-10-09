@@ -11,15 +11,6 @@ module Stack =
     let head stack = match stack with Stack(head, _) -> head
     let push value stack = Stack(value, stack)
 
-    // Apply stack 
-    let apply1 func stack = match stack with Stack(a1, tail) -> Stack(func a1, tail)
-    let apply2 func stack = match stack with Stack(a2, Stack(a1, tail)) -> Stack(func a1 a2, tail)
-    let apply3 func stack = match stack with Stack(a3, Stack(a2, Stack(a1, tail))) -> Stack(func a1 a2 a3, tail)
-
-    let unary = apply1
-    let binary = apply2
-    let ternary = apply3
-
     // for Debug
     let printStack stack =
         printfn "%O" stack

@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="tsr-StackedFlow"  Version="0.5"  Condition="'$(Configuration)' == 'NugetTest'" />
+    <PackageReference Include="tsr-StackedFlow"  Version="1.0"  Condition="'$(Configuration)' == 'NugetTest'" />
     <ProjectReference Include="..\..\src\StackedFlow\StackedFlow.fsproj"  Condition="'$(Configuration)' != 'NugetTest'" />
   </ItemGroup>
 

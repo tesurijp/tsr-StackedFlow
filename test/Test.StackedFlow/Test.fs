@@ -3,6 +3,7 @@ namespace Test.StakedFlow
 open Microsoft.VisualStudio.TestTools.UnitTesting
 open tsr.StackedFlow
 open tsr.StackedFlow.Stack
+open tsr.StackedFlow.FuncApplyer
 open tsr.StackedFlow.StackOperator
 
 [<TestClass>]
@@ -46,11 +47,18 @@ type StackOperationsTests() =
 
     [<TestMethod>]
     member _.``apply functions consume stack values from the top`` () =
-        let stack = EmptyStack |+10 |+ 1 |+ 2 |+ 3 |+ 4
+        let stack = EmptyStack |+1 |+2 |+3 |+4 |+5 |+6 |+7 |+8 |+9 |+10
 
-        assertContents [ "5"; "3"; "2"; "1" ; "10"] (apply1 ((+) 1) stack)
-        assertContents [ "-1"; "2"; "1" ; "10"] (apply2 (-) stack)
-        assertContents [ "9"; "1"; "10" ] (apply3 (fun a b c -> a + b + c) stack)
+        assertContents [ "11"; "9"; "8"; "7"; "6"; "5"; "4"; "3"; "2"; "1" ; ] (apply1 ((+) 1) stack)
+        assertContents [ "-1"; "8"; "7"; "6"; "5"; "4"; "3"; "2"; "1" ; ] (apply2 (-) stack)
+        assertContents [ "27"; "7"; "6"; "5"; "4"; "3"; "2"; "1" ; ] (apply3 (fun a b c -> a + b + c) stack)
+        assertContents [ "34"; "6"; "5"; "4"; "3"; "2"; "1" ; ] (apply4 (fun a b c d -> a + b + c + d ) stack)
+        assertContents [ "40"; "5"; "4"; "3"; "2"; "1" ; ] (apply5 (fun a b c d e -> a + b + c + d + e ) stack)
+        assertContents [ "45"; "4"; "3"; "2"; "1" ; ] (apply6 (fun a b c d e f -> a + b + c + d + e + f ) stack)
+        assertContents [ "49"; "3"; "2"; "1" ; ] (apply7 (fun a b c d e f g -> a + b + c + d + e + f + g ) stack)
+        assertContents [ "52"; "2"; "1" ; ] (apply8 (fun a b c d e f g h -> a + b + c + d + e + f + g + h ) stack)
+        assertContents [ "54"; "1" ;] (apply9 (fun a b c d e f g h i -> a + b + c + d + e + f + g + h + i) stack)
+        assertContents [ "55";  ] (apply10 (fun a b c d e f g h i j -> a + b + c + d + e + f + g + h + i + j) stack)
 
     [<TestMethod>]
     member _.``Caller applies one two and five arguments`` () =
